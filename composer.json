@@ -1,0 +1,14 @@
+{
+    "require": {
+        "miladrahimi/phprouter": "5.*",
+        "j4mie/idiorm": "^1.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Classes\\": "Classes",
+            "Controllers\\": "Controllers",
+            "Middleware\\": "Middleware"
+
+        }
+    }
+}
