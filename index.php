@@ -1,10 +1,12 @@
 <?php
 
 
+use Controllers\CourseController;
 use Controllers\MainController;
 use Controllers\UserController;
 use Laminas\Diactoros\Response\HtmlResponse;
 use Laminas\Diactoros\Response\RedirectResponse;
+use Middleware\AuthMiddleware;
 use MiladRahimi\PhpContainer\Container;
 use MiladRahimi\PhpRouter\Exceptions\RouteNotFoundException;
 use MiladRahimi\PhpRouter\Router;
@@ -29,7 +31,16 @@ $router->post('/register',[UserController::class,'store'],'register');
 $router->get('/login',[MainController::class,'login'],'login');
 $router->post('/login',[UserController::class,'login'],'login');
 
-$router->get('/add_listing',[MainController::class,'add_listing'],'add_listing');
+$router->group(['middleware'=>[AuthMiddleware::class]],function(Router $router){
+    $router->get('/add_listing',[MainController::class,'add_listing'],'add_listing');
+    $router->post('/add_listing_store',[CourseController::class, 'store'],'add_listing_store');
+
+    $router->get('/clear-session',function (): RedirectResponse
+    {
+        unset($_SESSION['user-id']);
+        return new RedirectResponse('/');
+    });
+});
 
 try {
     $router->dispatch();

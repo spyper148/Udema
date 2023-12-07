@@ -22,6 +22,9 @@ class MainController
 
     public function add_listing(View $view)
     {
-        return $view->make('profile.add-listing');
+        $categories = \ORM::for_table('categories')->findMany();
+        return $view->make('profile.add-listing',[
+            'categories' => $categories
+        ]);
     }
 }

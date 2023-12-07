@@ -10,34 +10,34 @@
   <title>UDEMA - Admin dashboard</title>
 	
   <!-- Favicons-->
-  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-  <link rel="apple-touch-icon" type="image/x-icon" href="img/apple-touch-icon-57x57-precomposed.png">
-  <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="img/apple-touch-icon-72x72-precomposed.png">
-  <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="img/apple-touch-icon-114x114-precomposed.png">
-  <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="img/apple-touch-icon-144x144-precomposed.png">
+  <link rel="shortcut icon" href="../../assets/img/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" type="image/x-icon" href="../../assets/img/apple-touch-icon-57x57-precomposed.png">
+  <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="../../assets/img/apple-touch-icon-72x72-precomposed.png">
+  <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="../../assets/img/apple-touch-icon-114x114-precomposed.png">
+  <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="../../assets/img/apple-touch-icon-144x144-precomposed.png">
 
   <!-- GOOGLE WEB FONT -->
   <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800" rel="stylesheet">
 	
   <!-- Bootstrap core CSS-->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/admin_section/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Main styles -->
-  <link href="css/admin.css" rel="stylesheet">
+  <link href="/assets/admin_section/css/admin.css" rel="stylesheet">
   <!-- Icon fonts-->
-  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="/assets/admin_section/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <!-- Plugin styles -->
-  <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-  <link href="vendor/dropzone.css" rel="stylesheet">
-  <link href="css/date_picker.css" rel="stylesheet">
+  <link href="/assets/admin_section/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+  <link href="/assets/admin_section/vendor/dropzone.css" rel="stylesheet">
+  <link href="/assets/admin_section/css/date_picker.css" rel="stylesheet">
   <!-- Your custom styles -->
-  <link href="css/custom.css" rel="stylesheet">
+  <link href="/assets/admin_section/css/custom.css" rel="stylesheet">
 	
 </head>
 
 <body class="fixed-nav sticky-footer" id="page-top">
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark bg-default fixed-top" id="mainNav">
-    <a class="navbar-brand" href="index.html"><img src="img/logo.png" data-retina="true" alt="" width="163" height="36"></a>
+    <a class="navbar-brand" href="/"><img src="/assets/admin_section/img/logo.png" data-retina="true" alt="" width="163" height="36"></a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -74,7 +74,7 @@
           </a>
         </li>
 		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Add listing">
-          <a class="nav-link" href="add-listing.html">
+          <a class="nav-link" href="/add_listing">
             <i class="fa fa-fw fa-plus-circle"></i>
             <span class="nav-link-text">Add listing</span>
           </a>
@@ -213,6 +213,7 @@
     </div>
   </nav>
   <!-- /Navigation-->
+  <form enctype="multipart/form-data" method="post" action="/add_listing_store">
   <div class="content-wrapper">
     <div class="container-fluid">
       <!-- Breadcrumbs-->
@@ -222,7 +223,11 @@
         </li>
         <li class="breadcrumb-item active">Add listing</li>
       </ol>
-        <form>
+
+
+
+        <form >
+
 		<div class="box_general padding_bottom">
 			<div class="header_box version_2">
 				<h2><i class="fa fa-file"></i>Basic info</h2>
@@ -231,13 +236,13 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label>Course title</label>
-						<input type="text" class="form-control" placeholder="Course title">
+						<input name="name" type="text" class="form-control" placeholder="Course title">
 					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
 						<label>Course price</label>
-						<input type="text" class="form-control" placeholder="Course category">
+						<input name="price" type="text" class="form-control" placeholder="Course price">
 					</div>
 				</div>
 			</div>
@@ -246,31 +251,17 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label>Course start</label>
-						<input type="text" class="form-control date-pick" placeholder="Course start">
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-						<label>Course expire</label>
-						<input type="email" class="form-control date-pick" placeholder="Your email">
+						<input name="date_start" type="date" class="form-control date-pick" placeholder="Course start">
 					</div>
 				</div>
 			</div>
-			<!-- /row-->
-			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label>Teacher name</label>
-						<input type="text" class="form-control" placeholder="Course teacher">
-					</div>
-				</div>
-			</div>
+
 			<!-- /row-->
 			<div class="row">
 				<div class="col-md-12">
 					<div class="form-group">
 						<label>Course picture</label>
-						<form action="/file-upload" class="dropzone" ></form>
+						<input type="file" name="img">
 					</div>
 				</div>
 			</div>
@@ -286,7 +277,7 @@
 				<div class="col-md-12">
 					<div class="form-group">
 						<label>Course description</label>
-						<textarea rows="5" class="form-control" style="height:100px;" placeholder="Description"></textarea>
+						<input name="description" type="text" class="form-control" style="height:100px;" placeholder="Description">
 					</div>
 				</div>
 			</div>
@@ -295,60 +286,25 @@
 				<div class="col-md-12">
 					<div class="form-group">
 						<label>Category <a href="#0" data-toggle="tooltip" data-placement="top" title="Separated by commas"><i class="fa fa-fw fa-question-circle"></i></a></label>
-						<input type="text" class="form-control" placeholder="Ex: Science, Biology...">
+                        <select name="category">
+
+                            <?php foreach ($categories as $category): ?>
+                            <option value="<?=$category->id?>"><?=$category->category?></option>
+                            <?php endforeach;?>
+                        </select>
 					</div>
 				</div>
 			</div>
 			<!-- /row-->
 		</div>
-		<!-- /box_general-->
-		
-		<div class="box_general padding_bottom">
-			<div class="header_box version_2">
-				<h2><i class="fa fa-video-camera"></i>Videos</h2>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<h6>Item</h6>
-					<table id="pricing-list-container" style="width:100%;">
-						<tr class="pricing-list-item">
-							<td>
-								<div class="row">
-									<div class="col-md-4">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Video title">
-										</div>
-									</div>
-									<div class="col-md-3">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Video category">
-										</div>
-									</div>
-									<div class="col-md-3">
-										<div class="form-group">
-											<input type="text" class="form-control"  placeholder="Video URL">
-										</div>
-									</div>
-									<div class="col-md-2">
-										<div class="form-group">
-											<a class="delete" href="#"><i class="fa fa-fw fa-remove"></i></a>
-										</div>
-									</div>
-								</div>
-							</td>
-						</tr>
-					</table>
-					<a href="#0" class="btn_1 gray add-pricing-list-item"><i class="fa fa-fw fa-plus-circle"></i>Add Item</a>
-					</div>
-			</div>
-			<!-- /row-->
 		</div>
 		<!-- /box_general-->
-		<input type="submit" class="btn_1 medium">
+		<input type="submit" class="btn_1 medium" value="Добавить">
 	  </div>
 	  <!-- /.container-fluid-->
    	</div>
   </form>
+
     <!-- /.container-wrapper-->
     <footer class="sticky-footer">
       <div class="container">
