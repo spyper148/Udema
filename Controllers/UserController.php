@@ -45,4 +45,28 @@ class UserController
 
     }
 
+    public function reset_password(ServerRequest $request):RedirectResponse
+    {
+        $person = \ORM::for_table('users')->where('id',$_SESSION['user-id'])->findOne();
+        $params = $request->getParsedBody();
+        if(password_verify($params['old_password'],$person->password) && $params['new_password'] == $params['conf_password']){
+            $person->password = password_hash($params['new_password'],PASSWORD_DEFAULT);
+            $person->save();
+            return new RedirectResponse('/');
+        }
+        else return new RedirectResponse('/user_profile');
+
+    }
+
+    public function reset_email(ServerRequest $request):RedirectResponse
+    {
+        $person = \ORM::for_table('users')->where('id',$_SESSION['user-id'])->findOne();
+        $params = $request->getParsedBody();
+        if($params['old_email'] == $person->email ){
+            $person->email = $params['new_email'];
+            $person->save();
+            return new RedirectResponse('/');
+        }
+        else return new RedirectResponse('/user_profile');
+    }
 }

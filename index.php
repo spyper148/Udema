@@ -34,6 +34,10 @@ $router->post('/login',[UserController::class,'login'],'login');
 $router->group(['middleware'=>[AuthMiddleware::class]],function(Router $router){
     $router->get('/add_listing',[MainController::class,'add_listing'],'add_listing');
     $router->post('/add_listing_store',[CourseController::class, 'store'],'add_listing_store');
+    $router->get('/user_profile',[MainController::class,'user_profile'],'user_profile');
+    $router->post('/reset_password',[UserController::class,'reset_password'],'reset_password');
+    $router->post('/reset_email',[UserController::class,'reset_email'],'reset_email');
+    $router->get('/teacher_profile',[MainController::class,'teacher_profile'],'teacher_profile');
 
     $router->get('/clear-session',function (): RedirectResponse
     {
