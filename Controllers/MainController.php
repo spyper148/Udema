@@ -46,10 +46,7 @@ class MainController
             ->findOne();
             if($teacher){
                 $courses = \ORM::for_table('courses')
-                    ->where('teacher_id',$teacher->id)
-                    ->join('categories', [
-                        'categories.id'=>'category_id'
-                    ])
+                    ->raw_query("SELECT courses.name, courses.description,courses.price,categories.category FROM courses INNER JOIN categories ON categories.id = courses.category_id WHERE courses.teacher_id = $teacher->id;")
                     ->findMany();
                 return $view->make('profile.teacher-profile',[
                     "user"=>$user,
@@ -61,6 +58,15 @@ class MainController
             {
                 return new RedirectResponse('/user_profile');
             }
+
+    }
+
+    public function course_detail(View $view,$id)
+    {
+        $course = \ORM::for_table('courses')->where('id',2);
+        return $view->make('courses.course-detail',[
+            'course'=>$course
+        ]);
 
     }
 }

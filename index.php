@@ -30,6 +30,8 @@ $router->get('/register',[MainController::class,'register'],'register');
 $router->post('/register',[UserController::class,'store'],'register');
 $router->get('/login',[MainController::class,'login'],'login');
 $router->post('/login',[UserController::class,'login'],'login');
+$router->get('/courses',[CourseController::class,'list'],'courses');
+$router->get('/course',[MainController::class,'course_detail'],'course');
 
 $router->group(['middleware'=>[AuthMiddleware::class]],function(Router $router){
     $router->get('/add_listing',[MainController::class,'add_listing'],'add_listing');

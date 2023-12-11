@@ -11,8 +11,10 @@ class CourseController
 {
     public function list(View $view)
     {
-        $courses = \ORM::for_table('courses')->findMany();
-        return $view->make('courses',[
+        $courses = \ORM::for_table('courses')
+            ->raw_query("SELECT courses.name, courses.img, courses.description,courses.price,categories.category,courses.rating FROM courses INNER JOIN categories ON categories.id = courses.category_id ")
+            ->findMany();
+        return $view->make('courses.courses',[
             "courses" => $courses
         ]);
 
@@ -49,4 +51,5 @@ class CourseController
         return new RedirectResponse('/');
 
     }
+
 }
